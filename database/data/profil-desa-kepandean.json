@@ -1,0 +1,248 @@
+{
+    "desa_slug": "kepandean",
+    "sumber": "database/Profil_Desa_Kepandean.md",
+    "geografis": {
+        "desa": "Kepandean",
+        "kecamatan": "Dukuhturi",
+        "kabupaten": "Kab. Tegal",
+        "provinsi": "Jawa Tengah",
+        "tipologi": "Perindustrian/jasa",
+        "luas": "111.61 m2",
+        "koordinat_lat": -6.913977,
+        "koordinat_lng": 109.1125,
+        "ketinggian_mdpl": 6.0,
+        "total_jiwa": 6997,
+        "laki_laki": 3599,
+        "perempuan": 3398,
+        "kepala_keluarga": 3378,
+        "kepadatan": 6269,
+        "kode_pos": "52192",
+        "potensi_wisata": "Belum ada"
+    },
+    "sejarah": "Desa Kepandean yang terletak di Kabupaten Tegal digambarkan sebagai wilayah yang memadukan keharmonisan sosial dengan potensi ekonomi lokal yang beragam. Komunitas ini mengandalkan sektor pertanian, peternakan, dan kewirausahaan, khususnya dalam produksi kudapan latopia serta kerajinan alat rumah tangga dari sabut kelapa. Kehidupan warga didukung oleh fasilitas publik yang memadai, mulai dari sarana kesehatan hingga institusi pendidikan yang lengkap. Kerjasama antarwarga terlihat jelas melalui pembentukan paguyuban usaha dan kegiatan gotong royong yang memperkuat ikatan persaudaraan. Selain ekonomi, desa ini menjaga kelestarian identitasnya melalui tradisi religius dan budaya yang diwariskan secara turun-temurun oleh para leluhur. Secara keseluruhan, sumber ini menyoroti semangat kolektif masyarakat dalam memajukan kesejahteraan desa demi masa depan yang lebih cerah.",
+    "visi": "Terbangunnya tata kelola pemerintahan desa yang baik dan bersih guna mewujudkan desa Kepandean Religius, Berbudaya, Adil, Mandiri, Makmur, Berdikari, Sejahtera dan Bermanfaat",
+    "misi": [
+        "Menyelenggarakan pemerintahan desa yang bersih, demokratis, dan terbebas dari korupsi, kolusi dan nepotisme serta bentuk-bentuk penyelewengan lainnya.",
+        "Mengembangkan perekonomian masyarakat melalui pemanfaatan potensi desa.",
+        "Meningkatkan mutu kesejahteraan masyarakat untuk mencapai taraf kehidupan yang lebih baik dan berpendidikan."
+    ],
+    "pejabat": [
+        {
+            "nama": "Wastedjo, S.Pd",
+            "jabatan": "Kepala Desa",
+            "kelompok": "pimpinan",
+            "wilayah_label": null,
+            "urutan": 1
+        },
+        {
+            "nama": "Heri A. Tiar",
+            "jabatan": "Sekretaris",
+            "kelompok": "perangkat",
+            "wilayah_label": null,
+            "urutan": 2
+        },
+        {
+            "nama": "Nurcholis",
+            "jabatan": "Bendahara",
+            "kelompok": "perangkat",
+            "wilayah_label": null,
+            "urutan": 3
+        },
+        {
+            "nama": "Istiqomah. Nur Hidayatun SKM",
+            "jabatan": "Tu & Umum Desa",
+            "kelompok": "perangkat",
+            "wilayah_label": null,
+            "urutan": 4
+        },
+        {
+            "nama": "Yahya Firmansyah",
+            "jabatan": "Perencanaan Desa",
+            "kelompok": "perangkat",
+            "wilayah_label": null,
+            "urutan": 5
+        },
+        {
+            "nama": "Wahyudin",
+            "jabatan": "Kesejahteraan Masyarakat",
+            "kelompok": "perangkat",
+            "wilayah_label": null,
+            "urutan": 6
+        },
+        {
+            "nama": "Tasdik",
+            "jabatan": "Staf Desa",
+            "kelompok": "perangkat",
+            "wilayah_label": null,
+            "urutan": 7
+        },
+        {
+            "nama": "Erwin Wilianto",
+            "jabatan": "Staf Desa",
+            "kelompok": "perangkat",
+            "wilayah_label": null,
+            "urutan": 8
+        },
+        {
+            "nama": "Adhi Kuspaningga",
+            "jabatan": "Staf Desa",
+            "kelompok": "perangkat",
+            "wilayah_label": null,
+            "urutan": 9
+        },
+        {
+            "nama": "Sihenti",
+            "jabatan": "Staf Desa",
+            "kelompok": "perangkat",
+            "wilayah_label": null,
+            "urutan": 10
+        },
+        {
+            "nama": "Darweni",
+            "jabatan": "Pemerintah Desa",
+            "kelompok": "perangkat",
+            "wilayah_label": null,
+            "urutan": 11
+        },
+        {
+            "nama": "Sihkartono",
+            "jabatan": "Pelayanan Desa",
+            "kelompok": "perangkat",
+            "wilayah_label": null,
+            "urutan": 12
+        },
+        {
+            "nama": "Daryono",
+            "jabatan": "Ketua RW 5",
+            "kelompok": "wilayah",
+            "wilayah_label": "RW 05",
+            "urutan": 13
+        },
+        {
+            "nama": "M. Rali & Karyono",
+            "jabatan": "Ketua RW 7",
+            "kelompok": "wilayah",
+            "wilayah_label": "RW 07",
+            "urutan": 14
+        },
+        {
+            "nama": "Supra Yogi",
+            "jabatan": "Ketua RW 2",
+            "kelompok": "wilayah",
+            "wilayah_label": "RW 02",
+            "urutan": 15
+        },
+        {
+            "nama": "Ratmo",
+            "jabatan": "Ketua RW 6",
+            "kelompok": "wilayah",
+            "wilayah_label": "RW 06",
+            "urutan": 16
+        },
+        {
+            "nama": "Wardi Adi",
+            "jabatan": "Ketua RT 1 / RW 2",
+            "kelompok": "wilayah",
+            "wilayah_label": "RT 01 / RW 02",
+            "urutan": 17
+        },
+        {
+            "nama": "Sony A",
+            "jabatan": "Ketua RT 3 / RW 2",
+            "kelompok": "wilayah",
+            "wilayah_label": "RT 03 / RW 02",
+            "urutan": 18
+        },
+        {
+            "nama": "Sutrisno",
+            "jabatan": "Ketua RT 4 / RW 2",
+            "kelompok": "wilayah",
+            "wilayah_label": "RT 04 / RW 02",
+            "urutan": 19
+        },
+        {
+            "nama": "Heru Suwandi",
+            "jabatan": "Ketua RT 4 / RW 4",
+            "kelompok": "wilayah",
+            "wilayah_label": "RT 04 / RW 04",
+            "urutan": 20
+        },
+        {
+            "nama": "Nurarivin",
+            "jabatan": "Ketua RT 1 / RW 5",
+            "kelompok": "wilayah",
+            "wilayah_label": "RT 01 / RW 05",
+            "urutan": 21
+        },
+        {
+            "nama": "Sumo",
+            "jabatan": "Ketua RT 3 / RW 2",
+            "kelompok": "wilayah",
+            "wilayah_label": "RT 03 / RW 02",
+            "urutan": 22
+        },
+        {
+            "nama": "Tejo",
+            "jabatan": "Ketua RT 1 / RW 4",
+            "kelompok": "wilayah",
+            "wilayah_label": "RT 01 / RW 04",
+            "urutan": 23
+        },
+        {
+            "nama": "Abid",
+            "jabatan": "Ketua RT 4 / RW 6",
+            "kelompok": "wilayah",
+            "wilayah_label": "RT 04 / RW 06",
+            "urutan": 24
+        },
+        {
+            "nama": "Chaerudin",
+            "jabatan": "Ketua RT 2 / RW 7",
+            "kelompok": "wilayah",
+            "wilayah_label": "RT 02 / RW 07",
+            "urutan": 25
+        },
+        {
+            "nama": "Darto",
+            "jabatan": "Ketua RT 1 / RW 7",
+            "kelompok": "wilayah",
+            "wilayah_label": "RT 01 / RW 07",
+            "urutan": 26
+        },
+        {
+            "nama": "Sutikno",
+            "jabatan": "Ketua RT 5 / RW 2",
+            "kelompok": "wilayah",
+            "wilayah_label": "RT 05 / RW 02",
+            "urutan": 27
+        },
+        {
+            "nama": "Nurokhim",
+            "jabatan": "Ketua RT 2 / RW 2",
+            "kelompok": "wilayah",
+            "wilayah_label": "RT 02 / RW 02",
+            "urutan": 28
+        },
+        {
+            "nama": "Jaenudin",
+            "jabatan": "Ketua RT 3 / RW 1",
+            "kelompok": "wilayah",
+            "wilayah_label": "RT 03 / RW 01",
+            "urutan": 29
+        },
+        {
+            "nama": "Kasirin",
+            "jabatan": "Ketua RT 5 / RW 5",
+            "kelompok": "wilayah",
+            "wilayah_label": "RT 05 / RW 05",
+            "urutan": 30
+        },
+        {
+            "nama": "Taryani",
+            "jabatan": "Ketua RT 1 / RW 6",
+            "kelompok": "wilayah",
+            "wilayah_label": "RT 01 / RW 06",
+            "urutan": 31
+        }
+    ]
+}

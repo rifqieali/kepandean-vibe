@@ -1,0 +1,64 @@
+# Blueprint Render: 1 web service (Docker, paket free) + 1 Postgres (free).
+# Cara pakai: push repo ke GitHub > Render Dashboard > New > Blueprint >
+# pilih repo ini > isi ADMIN_EMAIL + ADMIN_PASSWORD > Apply.
+# Catatan paket free: service tidur setelah 15 mnt idle (±1 mnt untuk bangun),
+# database free kedaluwarsa 30 hari, upload file hilang tiap restart.
+
+services:
+  - type: web
+    name: kepandean
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    plan: free
+    healthCheckPath: /up
+    envVars:
+      - key: APP_ENV
+        value: production
+      - key: APP_DEBUG
+        value: false
+      - key: APP_KEY
+        generateValue: true
+      # APP_URL sengaja tidak di-set: entrypoint otomatis memakai
+      # RENDER_EXTERNAL_URL (https://kepandean.onrender.com).
+      - key: DB_CONNECTION
+        value: pgsql
+      - key: DB_HOST
+        fromDatabase:
+          name: kepandean-db
+          property: host
+      - key: DB_PORT
+        fromDatabase:
+          name: kepandean-db
+          property: port
+      - key: DB_DATABASE
+        fromDatabase:
+          name: kepandean-db
+          property: database
+      - key: DB_USERNAME
+        fromDatabase:
+          name: kepandean-db
+          property: username
+      - key: DB_PASSWORD
+        fromDatabase:
+          name: kepandean-db
+          property: password
+      - key: SESSION_DRIVER
+        value: database
+      - key: CACHE_STORE
+        value: database
+      - key: QUEUE_CONNECTION
+        value: sync
+      - key: FILESYSTEM_DISK
+        value: local
+      - key: LOG_CHANNEL
+        value: stderr
+      - key: SESSION_SECURE_COOKIE
+        value: true
+      - key: ADMIN_EMAIL
+        sync: false
+      - key: ADMIN_PASSWORD
+        sync: false
+
+databases:
+  - name: kepandean-db
+    plan: free
