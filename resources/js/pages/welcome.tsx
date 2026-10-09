@@ -214,7 +214,7 @@ function Hero({
             className="px-4 pt-14 pb-[60px] [touch-action:pan-y] sm:px-8"
         >
             <div className="mx-auto grid w-full max-w-[1440px] items-start gap-8 lg:grid-cols-[1.05fr_1.3fr]">
-                <div>
+                <div className="min-w-0">
                     <p className="flex items-center gap-3 font-inter-tight text-[15px] font-medium">
                         <span
                             className="h-[2px] w-7 bg-charcoal-ink"
@@ -222,6 +222,7 @@ function Hero({
                         />
                         Selamat Datang di
                     </p>
+                    <div className="overflow-hidden">
                     <div
                         className="flex transition-transform duration-700 ease-out motion-reduce:transition-none"
                         style={{ transform: `translateX(-${indeks * 100}%)` }}
@@ -255,6 +256,7 @@ function Hero({
                                 </div>
                             );
                         })}
+                    </div>
                     </div>
                     {aktif.subjudul && (
                         <p className="mt-4 max-w-[34ch] text-[19px] leading-[1.4] font-medium">
