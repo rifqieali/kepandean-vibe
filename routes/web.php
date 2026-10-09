@@ -203,7 +203,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::inertia('dashboard', 'dashboard')->name('dashboard');
 });
 
-Route::middleware(['web', 'auth', 'verified'])->prefix('admin')->group(function () {
+Route::middleware(['web', 'auth', 'verified'])->prefix(config('filament.path', 'admin'))->group(function () {
     Route::post('media/upload', [MediaController::class, 'upload'])->name('admin.media.upload');
 });
 

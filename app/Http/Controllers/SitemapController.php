@@ -40,7 +40,7 @@ class SitemapController extends Controller
         $lines = [
             'User-agent: *',
             'Allow: /',
-            'Disallow: /admin/',
+            'Disallow: /'.trim((string) config('filament.path', 'admin'), '/').'/',
             'Disallow: /dashboard',
             'Disallow: /login',
             '',

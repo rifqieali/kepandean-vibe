@@ -165,6 +165,7 @@ Anda deploy ke layanan container.
 | `/admin` 404 atau halaman putih | pastikan docroot ke folder `public/`, lalu `php artisan route:clear` dan `php artisan config:clear` |
 | `/admin` tampil tanpa gaya (polos) | `php artisan filament:assets`, lalu hard refresh (Ctrl+Shift+R) |
 | `/admin` 403 setelah login | akun harus berrole `developer`, `admin_desa`, atau `editor` dan email terverifikasi |
+| Mau ganti jalur `/admin` | isi `FILAMENT_PATH` di `.env` (mis. `ruang-admin`), lalu `php artisan config:clear` dan `php artisan route:clear`; robots.txt ikut otomatis |
 | `No application encryption key` | `php artisan key:generate` |
 | `unable to open database file` | `touch database/database.sqlite` lalu `php artisan migrate` |
 | Gambar upload 404 | `php artisan storage:link` |
