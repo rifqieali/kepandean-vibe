@@ -8,13 +8,13 @@ use App\Support\Filament\DesaScoping;
 
 /**
  * Revisi peran: Statistik bukan konten editor. Hanya admin_desa
- * (satu desa) dan techade (lintas desa) yang boleh akses.
+ * (satu desa) dan developer (lintas desa) yang boleh akses.
  */
 class StatistikPolicy
 {
     public function viewAny(User $user): bool
     {
-        return $user->isAdminDesa() || $user->isTechade();
+        return $user->isAdminDesa() || $user->isDeveloper();
     }
 
     public function view(User $user, Statistik $model): bool
@@ -28,7 +28,7 @@ class StatistikPolicy
 
     public function create(User $user): bool
     {
-        return $user->isAdminDesa() || $user->isTechade();
+        return $user->isAdminDesa() || $user->isDeveloper();
     }
 
     public function update(User $user, Statistik $model): bool
@@ -51,6 +51,6 @@ class StatistikPolicy
 
     public function deleteAny(User $user): bool
     {
-        return $user->isAdminDesa() || $user->isTechade();
+        return $user->isAdminDesa() || $user->isDeveloper();
     }
 }

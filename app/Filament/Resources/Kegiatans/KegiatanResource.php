@@ -18,7 +18,7 @@ use UnitEnum;
 /**
  * Arsip Kegiatan: adapter ringan di atas Terbitan (kedaluarsa = hilang,
  * meniru Pengumuman #17). Punya cover, tanpa kategori.
- * Editor boleh simpan draft; publish hanya canPublish() (admin_desa/techade).
+ * Editor boleh simpan draft; publish hanya canPublish() (admin_desa/developer).
  */
 class KegiatanResource extends ScopedResource
 {

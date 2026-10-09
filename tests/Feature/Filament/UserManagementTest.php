@@ -79,7 +79,7 @@ class UserManagementTest extends TestCase
     {
         $admin = $this->makeUser('admin_desa', 'kepandean');
         $editor = $this->makeUser('editor', 'kepandean');
-        $techade = $this->makeUser('techade', 'kepandean');
+        $developer = $this->makeUser('developer', 'kepandean');
 
         $this->assertTrue(Gate::forUser($admin)->allows('publish-content'));
         $this->assertTrue(Gate::forUser($admin)->allows('manage-users'));
@@ -87,32 +87,32 @@ class UserManagementTest extends TestCase
         $this->assertTrue(Gate::forUser($editor)->denies('publish-content'));
         $this->assertTrue(Gate::forUser($editor)->denies('manage-users'));
 
-        // Techade mirip admin_desa tapi lintas-desa.
-        $this->assertTrue(Gate::forUser($techade)->allows('publish-content'));
-        $this->assertTrue(Gate::forUser($techade)->allows('manage-users'));
+        // Developer mirip admin_desa tapi lintas-desa.
+        $this->assertTrue(Gate::forUser($developer)->allows('publish-content'));
+        $this->assertTrue(Gate::forUser($developer)->allows('manage-users'));
     }
 
-    public function test_techade_sees_users_from_all_desa(): void
+    public function test_developer_sees_users_from_all_desa(): void
     {
-        $techade = $this->makeUser('techade', 'kepandean');
+        $developer = $this->makeUser('developer', 'kepandean');
         $teammate = $this->makeUser('editor', 'kepandean', true);
         $teammate->update(['name' => 'Teammate Kepandean']);
         $outsider = $this->makeUser('editor', 'desa-b', true);
         $outsider->update(['name' => 'Outsider Desa B']);
 
-        $response = $this->actingAs($techade, 'web')->get('/admin/users');
+        $response = $this->actingAs($developer, 'web')->get('/admin/users');
 
         $response->assertOk();
         $response->assertSee('Teammate Kepandean');
         $response->assertSee('Outsider Desa B');
     }
 
-    public function test_techade_can_edit_user_from_other_desa(): void
+    public function test_developer_can_edit_user_from_other_desa(): void
     {
-        $techade = $this->makeUser('techade', 'kepandean');
+        $developer = $this->makeUser('developer', 'kepandean');
         $outsider = $this->makeUser('editor', 'desa-b', true);
 
-        $this->actingAs($techade, 'web')
+        $this->actingAs($developer, 'web')
             ->get("/admin/users/{$outsider->id}/edit")
             ->assertOk();
     }

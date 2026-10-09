@@ -23,7 +23,7 @@ class HeroSlidesTable
                     ->label('Desa')
                     ->searchable()
                     ->sortable()
-                    ->visible(fn (): bool => DesaScoping::isTechadeContext()),
+                    ->visible(fn (): bool => DesaScoping::isDeveloperContext()),
                 TextColumn::make('judul')->label('Judul')->searchable()->limit(50),
                 TextColumn::make('urutan')->label('Urutan')->sortable(),
                 ToggleColumn::make('aktif')->label('Aktif'),
@@ -33,7 +33,7 @@ class HeroSlidesTable
                 SelectFilter::make('desa_id')
                     ->label('Desa')
                     ->relationship('desa', 'name')
-                    ->visible(fn (): bool => DesaScoping::isTechadeContext()),
+                    ->visible(fn (): bool => DesaScoping::isDeveloperContext()),
                 SelectFilter::make('aktif')
                     ->label('Status')
                     ->options(['1' => 'Aktif', '0' => 'Nonaktif']),

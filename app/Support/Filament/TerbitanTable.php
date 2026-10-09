@@ -28,7 +28,7 @@ final class TerbitanTable
             ->label('Desa')
             ->searchable()
             ->sortable()
-            ->visible(fn (): bool => DesaScoping::isTechadeContext());
+            ->visible(fn (): bool => DesaScoping::isDeveloperContext());
     }
 
     /**
@@ -58,7 +58,7 @@ final class TerbitanTable
         return SelectFilter::make('desa_id')
             ->label('Desa')
             ->relationship('desa', 'name')
-            ->visible(fn (): bool => DesaScoping::isTechadeContext());
+            ->visible(fn (): bool => DesaScoping::isDeveloperContext());
     }
 
     /**

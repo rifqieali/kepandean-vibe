@@ -17,7 +17,7 @@ use UnitEnum;
 
 /**
  * Issue #16: Berita end to end — pola baku yang ditiru Pengumuman (#17).
- * Editor boleh simpan draft; publish hanya canPublish() (admin_desa/techade).
+ * Editor boleh simpan draft; publish hanya canPublish() (admin_desa/developer).
  */
 class BeritaResource extends ScopedResource
 {

@@ -8,13 +8,13 @@ use App\Support\Filament\DesaScoping;
 
 /**
  * Issue #17: meniru BeritaPolicy (#16) — editor hanya boleh menulis draft,
- * tidak boleh menghapus apa pun. Hapus = hak publish (admin_desa/techade).
+ * tidak boleh menghapus apa pun. Hapus = hak publish (admin_desa/developer).
  */
 class PengumumanPolicy
 {
     public function viewAny(User $user): bool
     {
-        return $user->isEditor() || $user->isAdminDesa() || $user->isTechade();
+        return $user->isEditor() || $user->isAdminDesa() || $user->isDeveloper();
     }
 
     public function view(User $user, Pengumuman $model): bool
@@ -28,7 +28,7 @@ class PengumumanPolicy
 
     public function create(User $user): bool
     {
-        return $user->isEditor() || $user->isAdminDesa() || $user->isTechade();
+        return $user->isEditor() || $user->isAdminDesa() || $user->isDeveloper();
     }
 
     public function update(User $user, Pengumuman $model): bool
@@ -52,6 +52,6 @@ class PengumumanPolicy
 
     public function deleteAny(User $user): bool
     {
-        return $user->isAdminDesa() || $user->isTechade();
+        return $user->isAdminDesa() || $user->isDeveloper();
     }
 }

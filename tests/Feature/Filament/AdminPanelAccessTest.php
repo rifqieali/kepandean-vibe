@@ -59,15 +59,15 @@ class AdminPanelAccessTest extends TestCase
         $this->assertTrue($admin->canPublish());
     }
 
-    public function test_techade_can_access_panel(): void
+    public function test_developer_can_access_panel(): void
     {
-        $techade = User::factory()->create([
+        $developer = User::factory()->create([
             'desa_id' => null,
-            'role' => 'techade',
+            'role' => 'developer',
             'email_verified_at' => now(),
         ]);
 
-        $this->actingAs($techade, 'web');
+        $this->actingAs($developer, 'web');
         $response = $this->get('/admin');
 
         $response->assertOk();

@@ -48,7 +48,7 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail, Pas
         $role = $this->getAttribute('role');
 
         return is_string($role)
-            && in_array($role, ['techade', 'admin_desa', 'editor'], true)
+            && in_array($role, ['developer', 'admin_desa', 'editor'], true)
             && $this->hasVerifiedEmail();
     }
 
@@ -62,23 +62,23 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail, Pas
         return $this->role === 'editor';
     }
 
-    public function isTechade(): bool
+    public function isDeveloper(): bool
     {
-        return $this->role === 'techade';
+        return $this->role === 'developer';
     }
 
     public function canAccessAllDesa(): bool
     {
-        return $this->isTechade();
+        return $this->isDeveloper();
     }
 
     public function canManageUsers(): bool
     {
-        return $this->isAdminDesa() || $this->isTechade();
+        return $this->isAdminDesa() || $this->isDeveloper();
     }
 
     public function canPublish(): bool
     {
-        return $this->isAdminDesa() || $this->isTechade();
+        return $this->isAdminDesa() || $this->isDeveloper();
     }
 }

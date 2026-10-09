@@ -28,13 +28,13 @@ class UserForm
                 DesaScoping::desaSelect(),
                 Select::make('role')
                     ->label('Role')
-                    ->helperText('Hanya techade yang boleh memberi role techade.')
+                    ->helperText('Hanya developer yang boleh memberi role developer.')
                     ->options(function (): array {
                         $user = auth()->user();
 
-                        if ($user instanceof User && $user->isTechade()) {
+                        if ($user instanceof User && $user->isDeveloper()) {
                             return [
-                                'techade' => 'Techade',
+                                'developer' => 'Developer',
                                 'admin_desa' => 'Admin Desa',
                                 'editor' => 'Editor',
                             ];

@@ -16,7 +16,7 @@ class UsersTable
     public static function roleOptions(): array
     {
         return [
-            'techade' => 'Techade',
+            'developer' => 'Developer',
             'admin_desa' => 'Admin Desa',
             'editor' => 'Editor',
         ];
@@ -36,7 +36,7 @@ class UsersTable
                     ->label('Desa')
                     ->searchable()
                     ->sortable()
-                    ->visible(fn (): bool => DesaScoping::isTechadeContext()),
+                    ->visible(fn (): bool => DesaScoping::isDeveloperContext()),
                 TextColumn::make('role')
                     ->badge()
                     ->sortable()
@@ -50,7 +50,7 @@ class UsersTable
                 SelectFilter::make('desa_id')
                     ->label('Desa')
                     ->relationship('desa', 'name')
-                    ->visible(fn (): bool => DesaScoping::isTechadeContext()),
+                    ->visible(fn (): bool => DesaScoping::isDeveloperContext()),
                 SelectFilter::make('role')
                     ->label('Role')
                     ->options(self::roleOptions()),

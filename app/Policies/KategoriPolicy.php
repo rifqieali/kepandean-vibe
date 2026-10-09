@@ -14,7 +14,7 @@ class KategoriPolicy
 {
     public function viewAny(User $user): bool
     {
-        return $user->isEditor() || $user->isAdminDesa() || $user->isTechade();
+        return $user->isEditor() || $user->isAdminDesa() || $user->isDeveloper();
     }
 
     public function view(User $user, Kategori $model): bool
@@ -28,7 +28,7 @@ class KategoriPolicy
 
     public function create(User $user): bool
     {
-        return $user->isEditor() || $user->isAdminDesa() || $user->isTechade();
+        return $user->isEditor() || $user->isAdminDesa() || $user->isDeveloper();
     }
 
     public function update(User $user, Kategori $model): bool
@@ -51,6 +51,6 @@ class KategoriPolicy
 
     public function deleteAny(User $user): bool
     {
-        return $user->isAdminDesa() || $user->isTechade();
+        return $user->isAdminDesa() || $user->isDeveloper();
     }
 }

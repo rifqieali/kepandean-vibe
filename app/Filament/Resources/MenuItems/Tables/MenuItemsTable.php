@@ -19,7 +19,7 @@ class MenuItemsTable
                     ->label('Desa')
                     ->searchable()
                     ->sortable()
-                    ->visible(fn (): bool => DesaScoping::isTechadeContext()),
+                    ->visible(fn (): bool => DesaScoping::isDeveloperContext()),
                 TextColumn::make('label')->label('Label')->searchable()->limit(40),
                 TextColumn::make('url')->label('URL')->limit(40),
                 TextColumn::make('parent.label')->label('Induk'),

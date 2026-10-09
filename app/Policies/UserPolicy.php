@@ -9,7 +9,7 @@ class UserPolicy
 {
     public function viewAny(User $user): bool
     {
-        return $user->isAdminDesa() || $user->isTechade();
+        return $user->isAdminDesa() || $user->isDeveloper();
     }
 
     public function view(User $user, User $model): bool
@@ -23,7 +23,7 @@ class UserPolicy
 
     public function create(User $user): bool
     {
-        return $user->isAdminDesa() || $user->isTechade();
+        return $user->isAdminDesa() || $user->isDeveloper();
     }
 
     public function update(User $user, User $model): bool
@@ -48,6 +48,6 @@ class UserPolicy
 
     public function deleteAny(User $user): bool
     {
-        return $user->isAdminDesa() || $user->isTechade();
+        return $user->isAdminDesa() || $user->isDeveloper();
     }
 }

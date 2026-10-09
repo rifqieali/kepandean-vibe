@@ -40,7 +40,7 @@ class AuthServiceProvider extends ServiceProvider
 
             return $user->hasVerifiedEmail()
                 && is_string($role)
-                && in_array($role, ['techade', 'admin_desa', 'editor'], true);
+                && in_array($role, ['developer', 'admin_desa', 'editor'], true);
         });
 
         Gate::define('publish-content', function (User $user) {

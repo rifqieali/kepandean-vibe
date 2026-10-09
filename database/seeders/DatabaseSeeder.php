@@ -26,12 +26,12 @@ class DatabaseSeeder extends Seeder
         );
 
         User::firstOrCreate(
-            ['email' => 'admin@techade.dev'],
+            ['email' => 'admin@developer.dev'],
             [
-                'name' => 'Techade',
-                'password' => 'Sukses2026!',
+                'name' => 'Developer',
+                'password' => 'password',
                 'desa_id' => null,
-                'role' => 'techade',
+                'role' => 'developer',
                 'email_verified_at' => now(),
             ]
         );

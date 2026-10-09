@@ -23,7 +23,7 @@ class PejabatsTable
                     ->label('Desa')
                     ->searchable()
                     ->sortable()
-                    ->visible(fn (): bool => DesaScoping::isTechadeContext()),
+                    ->visible(fn (): bool => DesaScoping::isDeveloperContext()),
                 TextColumn::make('nama')->label('Nama')->searchable()->sortable(),
                 TextColumn::make('jabatan')->label('Jabatan')->searchable()->sortable(),
                 TextColumn::make('kelompok')
@@ -38,7 +38,7 @@ class PejabatsTable
                 SelectFilter::make('desa_id')
                     ->label('Desa')
                     ->relationship('desa', 'name')
-                    ->visible(fn (): bool => DesaScoping::isTechadeContext()),
+                    ->visible(fn (): bool => DesaScoping::isDeveloperContext()),
                 SelectFilter::make('kelompok')
                     ->label('Kelompok')
                     ->options(Pejabat::kelompokOptions()),

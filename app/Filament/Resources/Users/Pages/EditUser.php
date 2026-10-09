@@ -24,11 +24,11 @@ class EditUser extends ScopedEditPage
      */
     protected function mutateScopedData(array $data, ?User $user): array
     {
-        abort_unless($user instanceof User && ($user->isAdminDesa() || $user->isTechade()), 403);
+        abort_unless($user instanceof User && ($user->isAdminDesa() || $user->isDeveloper()), 403);
 
-        // Hanya techade yang boleh memberi role techade.
-        if (($data['role'] ?? null) === 'techade') {
-            abort_unless($user->isTechade(), 403);
+        // Hanya developer yang boleh memberi role developer.
+        if (($data['role'] ?? null) === 'developer') {
+            abort_unless($user->isDeveloper(), 403);
         }
 
         return $data;

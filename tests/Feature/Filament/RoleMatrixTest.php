@@ -14,10 +14,10 @@ use Illuminate\Support\Facades\Gate;
 use Tests\TestCase;
 
 /**
- * Matriks peran panel (revisi #16 + peran techade):
+ * Matriks peran panel (revisi #16 + peran developer):
  * - editor: hanya konten (Berita/Kategori), tanpa hapus, tanpa Pejabat/Statistik/Users.
  * - admin_desa: semua dalam desanya + publish + kelola user.
- * - techade: semua lintas desa.
+ * - developer: semua lintas desa.
  */
 class RoleMatrixTest extends TestCase
 {
@@ -100,21 +100,21 @@ class RoleMatrixTest extends TestCase
         $this->assertTrue(Gate::forUser($admin)->denies('delete', $outsider));
     }
 
-    public function test_techade_cross_desa_everywhere(): void
+    public function test_developer_cross_desa_everywhere(): void
     {
-        $techade = $this->makeUser('techade', 'kepandean');
+        $developer = $this->makeUser('developer', 'kepandean');
         $otherDesa = Desa::where('slug', 'desa-b')->firstOrFail();
 
-        $this->actingAs($techade, 'web')->get('/admin/pejabats')->assertOk();
-        $this->actingAs($techade, 'web')->get('/admin/statistiks')->assertOk();
+        $this->actingAs($developer, 'web')->get('/admin/pejabats')->assertOk();
+        $this->actingAs($developer, 'web')->get('/admin/statistiks')->assertOk();
 
         $outsider = Pejabat::create([
             'desa_id' => $otherDesa->id, 'nama' => 'X', 'jabatan' => 'Y',
             'kelompok' => Pejabat::KELOMPOK_PERANGKAT, 'urutan' => 0,
         ]);
 
-        $this->assertTrue(Gate::forUser($techade)->allows('view', $outsider));
-        $this->assertTrue(Gate::forUser($techade)->allows('delete', $outsider));
-        $this->assertTrue(Gate::forUser($techade)->allows('deleteAny', Berita::class));
+        $this->assertTrue(Gate::forUser($developer)->allows('view', $outsider));
+        $this->assertTrue(Gate::forUser($developer)->allows('delete', $outsider));
+        $this->assertTrue(Gate::forUser($developer)->allows('deleteAny', Berita::class));
     }
 }

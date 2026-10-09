@@ -20,7 +20,7 @@ class KategorisTable
                     ->label('Desa')
                     ->searchable()
                     ->sortable()
-                    ->visible(fn (): bool => DesaScoping::isTechadeContext()),
+                    ->visible(fn (): bool => DesaScoping::isDeveloperContext()),
                 TextColumn::make('nama')->label('Nama')->searchable()->sortable(),
                 TextColumn::make('slug')->label('Slug')->searchable(),
                 TextColumn::make('beritas_count')->label('Berita')->counts('beritas'),
@@ -29,7 +29,7 @@ class KategorisTable
                 SelectFilter::make('desa_id')
                     ->label('Desa')
                     ->relationship('desa', 'name')
-                    ->visible(fn (): bool => DesaScoping::isTechadeContext()),
+                    ->visible(fn (): bool => DesaScoping::isDeveloperContext()),
             ])
             ->defaultSort('nama')
             ->recordActions([

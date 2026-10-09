@@ -18,7 +18,7 @@ use UnitEnum;
 /**
  * Arsip Pengumuman (#17): adapter ringan di atas Terbitan.
  * Punya cover dan kedaluarsa, tanpa kategori.
- * Editor boleh simpan draft; publish hanya canPublish() (admin_desa/techade).
+ * Editor boleh simpan draft; publish hanya canPublish() (admin_desa/developer).
  */
 class PengumumanResource extends ScopedResource
 {

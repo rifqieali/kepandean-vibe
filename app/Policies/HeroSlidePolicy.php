@@ -8,13 +8,13 @@ use App\Support\Filament\DesaScoping;
 
 /**
  * Issue #18 checklist 1b: slide hero hanya dikelola admin_desa
- * (satu desa) dan techade (lintas desa).
+ * (satu desa) dan developer (lintas desa).
  */
 class HeroSlidePolicy
 {
     public function viewAny(User $user): bool
     {
-        return $user->isAdminDesa() || $user->isTechade();
+        return $user->isAdminDesa() || $user->isDeveloper();
     }
 
     public function view(User $user, HeroSlide $model): bool
@@ -28,7 +28,7 @@ class HeroSlidePolicy
 
     public function create(User $user): bool
     {
-        return $user->isAdminDesa() || $user->isTechade();
+        return $user->isAdminDesa() || $user->isDeveloper();
     }
 
     public function update(User $user, HeroSlide $model): bool
@@ -51,6 +51,6 @@ class HeroSlidePolicy
 
     public function deleteAny(User $user): bool
     {
-        return $user->isAdminDesa() || $user->isTechade();
+        return $user->isAdminDesa() || $user->isDeveloper();
     }
 }

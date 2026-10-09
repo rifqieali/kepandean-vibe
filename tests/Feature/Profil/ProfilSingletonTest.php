@@ -36,28 +36,28 @@ class ProfilSingletonTest extends TestCase
         ]);
     }
 
-    private function makeTechadeTanpaDesa(): User
+    private function makeDeveloperTanpaDesa(): User
     {
         return User::factory()->create([
             'desa_id' => null,
-            'role' => 'techade',
+            'role' => 'developer',
             'email_verified_at' => now(),
         ]);
     }
 
-    public function test_techade_tanpa_desa_bisa_buka_halaman_profil(): void
+    public function test_developer_tanpa_desa_bisa_buka_halaman_profil(): void
     {
-        $techade = $this->makeTechadeTanpaDesa();
+        $developer = $this->makeDeveloperTanpaDesa();
 
-        $this->actingAs($techade, 'web')->get('/admin/profil')->assertOk();
+        $this->actingAs($developer, 'web')->get('/admin/profil')->assertOk();
     }
 
-    public function test_techade_bisa_simpan_profil_desa_lain(): void
+    public function test_developer_bisa_simpan_profil_desa_lain(): void
     {
-        $techade = $this->makeTechadeTanpaDesa();
+        $developer = $this->makeDeveloperTanpaDesa();
         $desaB = Desa::where('slug', 'desa-b')->firstOrFail();
 
-        $this->actingAs($techade, 'web');
+        $this->actingAs($developer, 'web');
 
         Livewire::test(KelolaProfil::class)
             ->call('switchDesa', $desaB->id)

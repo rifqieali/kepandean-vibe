@@ -68,9 +68,9 @@ class KelolaProfil extends Page
 
         abort_unless($user instanceof User && $user->canPublish(), 403);
 
-        // Techade lintas-desa: pakai desanya bila ada, kalau tidak pakai
+        // Developer lintas-desa: pakai desanya bila ada, kalau tidak pakai
         // desa default/pertama. Tanpa desa sama sekali = salah konfigurasi.
-        $desa = $user->isTechade()
+        $desa = $user->isDeveloper()
             ? $user->desa()->first() ?? Desa::getDefault() ?? Desa::orderBy('id')->first()
             : $user->desa()->first();
 
@@ -82,14 +82,14 @@ class KelolaProfil extends Page
     }
 
     /**
-     * Techade berpindah antar desa tanpa ganti akun: muat ulang profil
-     * desa tujuan ke form. Non-techade ditolak (403).
+     * Developer berpindah antar desa tanpa ganti akun: muat ulang profil
+     * desa tujuan ke form. Non-developer ditolak (403).
      */
     public function switchDesa(int $desaId): void
     {
         $user = auth()->user();
 
-        abort_unless($user instanceof User && $user->isTechade(), 403);
+        abort_unless($user instanceof User && $user->isDeveloper(), 403);
 
         if ($this->profil instanceof Profil && $this->profil->desa_id === $desaId) {
             return;
@@ -117,7 +117,7 @@ class KelolaProfil extends Page
             'logo_path' => $raw['logo_path'] ?? null,
         ];
 
-        if (auth()->user() instanceof User && auth()->user()->isTechade()) {
+        if (auth()->user() instanceof User && auth()->user()->isDeveloper()) {
             $data['desa_id'] = $this->profil->desa_id;
         }
 
@@ -159,13 +159,13 @@ class KelolaProfil extends Page
 
             $this->callHook('afterValidate');
 
-            // Techade menyimpan ke desa yang dipilih; selain itu dikunci
+            // Developer menyimpan ke desa yang dipilih; selain itu dikunci
             // ke desa sendiri (desa_id di form tidak dipercaya).
             $user = auth()->user();
 
             abort_unless($user instanceof User && $user->canPublish(), 403);
 
-            $target = $user->isTechade()
+            $target = $user->isDeveloper()
                 ? Desa::find($data['desa_id'] ?? null)
                 : $user->desa()->first();
 
@@ -221,7 +221,7 @@ class KelolaProfil extends Page
                     ->options(fn (): array => DesaScoping::desaOptions())
                     ->required()
                     ->live()
-                    ->visible(fn (): bool => DesaScoping::isTechadeContext())
+                    ->visible(fn (): bool => DesaScoping::isDeveloperContext())
                     ->afterStateUpdated(function ($state, $livewire): void {
                         if ($livewire instanceof KelolaProfil && filled($state)) {
                             $livewire->switchDesa((int) $state);

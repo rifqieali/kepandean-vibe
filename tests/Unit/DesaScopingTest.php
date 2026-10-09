@@ -43,11 +43,11 @@ class DesaScopingTest extends TestCase
         $this->assertStringContainsString('1 = 0', $sql);
     }
 
-    public function test_scope_for_admin_returns_all_for_techade(): void
+    public function test_scope_for_admin_returns_all_for_developer(): void
     {
-        $techade = $this->user('techade', null);
+        $developer = $this->user('developer', null);
 
-        $sql = DesaScoping::scopeForAdmin(Statistik::query(), $techade)->toSql();
+        $sql = DesaScoping::scopeForAdmin(Statistik::query(), $developer)->toSql();
 
         $this->assertStringNotContainsString('1 = 0', $sql);
         $this->assertStringNotContainsString('desa_id', $sql);
@@ -77,7 +77,7 @@ class DesaScopingTest extends TestCase
         $this->assertStringContainsString('1 = 0', $sql);
     }
 
-    public function test_resolve_desa_id_for_create_locks_non_techade(): void
+    public function test_resolve_desa_id_for_create_locks_non_developer(): void
     {
         $desa = Desa::where('slug', 'kepandean')->firstOrFail();
         $admin = $this->user('admin_desa', $desa);
@@ -87,7 +87,7 @@ class DesaScopingTest extends TestCase
         $this->assertSame($desa->id, $data['desa_id']);
     }
 
-    public function test_resolve_desa_id_for_create_rejects_guest_and_empty_techade_pick(): void
+    public function test_resolve_desa_id_for_create_rejects_guest_and_empty_developer_pick(): void
     {
         try {
             DesaScoping::resolveDesaIdForCreate(['judul' => 'x'], null);
@@ -97,25 +97,25 @@ class DesaScopingTest extends TestCase
         }
     }
 
-    public function test_resolve_desa_id_for_create_requires_techade_pick(): void
+    public function test_resolve_desa_id_for_create_requires_developer_pick(): void
     {
-        $techade = $this->user('techade', null);
+        $developer = $this->user('developer', null);
 
         try {
-            DesaScoping::resolveDesaIdForCreate(['judul' => 'x'], $techade);
-            $this->fail('Techade tanpa desa_id harus ditolak (422).');
+            DesaScoping::resolveDesaIdForCreate(['judul' => 'x'], $developer);
+            $this->fail('Developer tanpa desa_id harus ditolak (422).');
         } catch (HttpException $e) {
             $this->assertSame(422, $e->getStatusCode());
         }
     }
 
-    public function test_lock_desa_id_for_save_keeps_techade_choice(): void
+    public function test_lock_desa_id_for_save_keeps_developer_choice(): void
     {
         $desaA = Desa::where('slug', 'kepandean')->firstOrFail();
         $desaB = Desa::where('slug', 'desa-b')->firstOrFail();
-        $techade = $this->user('techade', null);
+        $developer = $this->user('developer', null);
 
-        $data = DesaScoping::lockDesaIdForSave(['desa_id' => $desaB->id], $techade);
+        $data = DesaScoping::lockDesaIdForSave(['desa_id' => $desaB->id], $developer);
 
         $this->assertSame($desaB->id, $data['desa_id']);
         $this->assertSame($desaA->id, Desa::where('slug', 'kepandean')->firstOrFail()->id);
@@ -132,16 +132,16 @@ class DesaScopingTest extends TestCase
         $this->assertStringContainsString((string) $desa->id, (string) $rule);
     }
 
-    public function test_kategori_options_scope_to_selected_desa_for_techade(): void
+    public function test_kategori_options_scope_to_selected_desa_for_developer(): void
     {
         $desaA = Desa::where('slug', 'kepandean')->firstOrFail();
         $desaB = Desa::where('slug', 'desa-b')->firstOrFail();
-        $techade = $this->user('techade', null);
+        $developer = $this->user('developer', null);
 
         Kategori::create(['desa_id' => $desaA->id, 'nama' => 'A1', 'slug' => 'a1']);
         Kategori::create(['desa_id' => $desaB->id, 'nama' => 'B1', 'slug' => 'b1']);
 
-        $scoped = DesaScoping::kategoriOptions($techade, $desaA->id);
+        $scoped = DesaScoping::kategoriOptions($developer, $desaA->id);
 
         $this->assertSame(['A1'], array_values($scoped));
     }

@@ -31,7 +31,7 @@ class StatistiksTable
                     ->label('Desa')
                     ->searchable()
                     ->sortable()
-                    ->visible(fn (): bool => DesaScoping::isTechadeContext()),
+                    ->visible(fn (): bool => DesaScoping::isDeveloperContext()),
                 TextColumn::make('kunci')
                     ->label('Kunci')
                     ->badge()
@@ -45,7 +45,7 @@ class StatistiksTable
                 SelectFilter::make('desa_id')
                     ->label('Desa')
                     ->relationship('desa', 'name')
-                    ->visible(fn (): bool => DesaScoping::isTechadeContext()),
+                    ->visible(fn (): bool => DesaScoping::isDeveloperContext()),
                 SelectFilter::make('kunci')
                     ->label('Kunci')
                     ->options(self::kunciOptions()),

@@ -67,24 +67,24 @@ class DesaScopingTest extends TestCase
         $this->assertTrue($visibleAssets->first()->is($assetA));
     }
 
-    public function test_techade_can_see_all_content_without_scope(): void
+    public function test_developer_can_see_all_content_without_scope(): void
     {
         $desaA = Desa::where('slug', 'kepandean')->first();
         $desaB = Desa::where('slug', 'desa-b')->first();
 
-        $techade = User::factory()->create([
+        $developer = User::factory()->create([
             'desa_id' => null,
-            'role' => 'techade',
+            'role' => 'developer',
             'email_verified_at' => now(),
         ]);
 
         Asset::create(['desa_id' => $desaA->id]);
         Asset::create(['desa_id' => $desaB->id]);
 
-        // Techade tidak kena scope desa: query panel mengembalikan semua desa.
-        $this->actingAs($techade, 'web');
+        // Developer tidak kena scope desa: query panel mengembalikan semua desa.
+        $this->actingAs($developer, 'web');
 
-        // Need to disable global scope for techade
+        // Need to disable global scope for developer
         $allAssets = Asset::withoutGlobalScope('desa')->get();
         $this->assertCount(2, $allAssets);
     }

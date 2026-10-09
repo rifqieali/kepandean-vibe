@@ -14,10 +14,10 @@ use Illuminate\Validation\Rules\Unique;
  * Satu-satunya seam scoping desa untuk panel Filament (deep module).
  *
  * Enam resource + KelolaProfil sebelumnya mengulang triple yang sama
- * (getEloquentQuery + visible techade + mutate desa_id) dengan tiga
+ * (getEloquentQuery + visible developer + mutate desa_id) dengan tiga
  * semantik kunci yang berbeda; bocor satu tempat = bocor lintas-desa.
  * Pemanggil hanya perlu interface kecil ini — bukan auth()->user()
- * + isTechade() + where desa_id yang dihafal di tiap file.
+ * + isDeveloper() + where desa_id yang dihafal di tiap file.
  */
 final class DesaScoping
 {
@@ -32,10 +32,10 @@ final class DesaScoping
     {
         $user ??= self::currentUser();
 
-        return $user instanceof User && $user->isTechade();
+        return $user instanceof User && $user->isDeveloper();
     }
 
-    public static function isTechadeContext(): bool
+    public static function isDeveloperContext(): bool
     {
         return self::canSeeAllDesa();
     }
@@ -54,8 +54,8 @@ final class DesaScoping
             return $query->whereRaw('1 = 0');
         }
 
-        // Techade: akses semua desa, tanpa scope desa_id.
-        if ($user->isTechade()) {
+        // Developer: akses semua desa, tanpa scope desa_id.
+        if ($user->isDeveloper()) {
             return $query;
         }
 
@@ -81,8 +81,8 @@ final class DesaScoping
             ->required()
             ->live()
             ->searchable()
-            ->helperText($helperText ?? 'Techade wajib memilih desa; admin desa dikunci ke desanya otomatis.')
-            ->visible(fn (): bool => self::isTechadeContext());
+            ->helperText($helperText ?? 'Developer wajib memilih desa; admin desa dikunci ke desanya otomatis.')
+            ->visible(fn (): bool => self::isDeveloperContext());
     }
 
     /**
@@ -95,8 +95,8 @@ final class DesaScoping
 
         abort_unless($user instanceof User, 403);
 
-        // Techade wajib memilih desa di form; selain itu dikunci ke desa sendiri.
-        if ($user->isTechade()) {
+        // Developer wajib memilih desa di form; selain itu dikunci ke desa sendiri.
+        if ($user->isDeveloper()) {
             abort_unless(filled($data['desa_id'] ?? null), 422);
 
             return $data;
@@ -119,10 +119,10 @@ final class DesaScoping
 
         abort_unless($user instanceof User, 403);
 
-        // Desa dikunci: non-techade tidak bisa memindahkan baris antar desa.
+        // Desa dikunci: non-developer tidak bisa memindahkan baris antar desa.
         // Overwrite eksplisit (bukan unset diam-diam) agar satu semantik
         // untuk semua halaman edit.
-        if (! $user->isTechade()) {
+        if (! $user->isDeveloper()) {
             abort_unless($user->desa_id !== null, 403);
 
             $data['desa_id'] = $user->desa_id;
@@ -133,13 +133,13 @@ final class DesaScoping
 
     /**
      * Desa untuk klausa Unique per-desa: admin/editor dikunci ke desanya,
-     * techade memakai desa yang dipilih di form (reaktif via $get).
+     * developer memakai desa yang dipilih di form (reaktif via $get).
      */
     public static function desaIdForUnique(?Get $get = null, ?User $user = null): mixed
     {
         $user ??= self::currentUser();
 
-        if ($user instanceof User && ! $user->isTechade()) {
+        if ($user instanceof User && ! $user->isDeveloper()) {
             return $user->desa_id;
         }
 
@@ -163,7 +163,7 @@ final class DesaScoping
 
         $query = Kategori::query()->orderBy('nama');
 
-        $desaId = $user instanceof User && ! $user->isTechade()
+        $desaId = $user instanceof User && ! $user->isDeveloper()
             ? $user->desa_id
             : $selectedDesaId;
 

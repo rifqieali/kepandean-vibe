@@ -22,7 +22,7 @@ class LamanHeroesTable
                     ->label('Desa')
                     ->searchable()
                     ->sortable()
-                    ->visible(fn (): bool => DesaScoping::isTechadeContext()),
+                    ->visible(fn (): bool => DesaScoping::isDeveloperContext()),
                 TextColumn::make('slug')
                     ->label('Laman')
                     ->formatStateUsing(fn (string $state): string => LamanHero::slugOptions()[$state] ?? $state),
